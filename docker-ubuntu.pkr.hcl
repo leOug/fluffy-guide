@@ -13,11 +13,18 @@ source "docker" "ubuntu" {
   commit = "true"
 }
 
+source "docker" "ubuntu-bionic" {
+
+  image = "ubuntu:bionic"
+  commit = true
+}
+
 build {
 
   name = "learn-packer"
   sources = [
-    "source.docker.ubuntu"
+    "source.docker.ubuntu",
+    "source.docker.ubuntu-bionic"
   ]
 
   provisioner "shell" {

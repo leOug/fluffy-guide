@@ -9,7 +9,7 @@ packer {
 
 source "docker" "ubuntu" {
 
-  image  = var.docker_mage
+  image  = var.docker_image
   commit = "true"
 }
 
@@ -36,7 +36,8 @@ build {
   provisioner "shell" {
 
     inline = [
-     "echo This provisioner runs last",
+     "echo Oompa Loompas",
+     "echo Running ${var.docker_image} Docker image"
     ]
 
   }

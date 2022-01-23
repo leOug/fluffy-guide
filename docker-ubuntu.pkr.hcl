@@ -20,7 +20,6 @@ source "docker" "ubuntu-bionic" {
 }
 
 build {
-
   name = "learn-packer"
   sources = [
     "source.docker.ubuntu",
@@ -47,6 +46,17 @@ build {
      "echo Running ${var.docker_image} Docker image"
     ]
 
+  }
+  post-processor "docker-tag" {
+    repository = "local-packer"
+    tags = ["ubuntu-xenial","packer-rocks"]
+    only = ["docker.ubuntu"]
+  }
+
+  post-processor "docker-tag"{
+    repository = "local-packer"
+    tags = ["ubuntu-bionic" , "packer-rocks"]
+    only = ["docker.ubuntu-bionic"]
   }
 }
 
